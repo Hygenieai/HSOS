@@ -1,0 +1,21 @@
+export const closingCallScenario = {
+  name: "Closing Call",
+  description: "Final push toward commitment and contract",
+  type: "closing" as const,
+  conversation: [
+    { speaker: 'rep' as const, text: "Hi Sarah, thanks for taking the call. Did you get a chance to review the proposal I sent?" },
+    { speaker: 'prospect' as const, text: "Yes, we reviewed it. The team is interested, but we have a few questions." },
+    { speaker: 'rep' as const, text: "I'm glad to hear there's interest. What questions do you have?" },
+    { speaker: 'prospect' as const, text: "Mainly around implementation. How long does it take to get set up? And what kind of support do you provide?" },
+    { speaker: 'rep' as const, text: "Setup is typically 2-3 days. We handle the technical integration, then do a week of training. Plus ongoing support included." },
+    { speaker: 'prospect' as const, text: "What about if we need help later? Is there additional cost?" },
+    { speaker: 'rep' as const, text: "No additional cost for support - it's included. You'll have a dedicated success manager who checks in monthly." },
+    { speaker: 'prospect' as const, text: "That's good to know. Okay, so if we wanted to move forward, what's the process?" },
+    { speaker: 'rep' as const, text: "I'll send over the contract today. Once you sign, we'll schedule the kickoff call for next week." },
+    { speaker: 'prospect' as const, text: "Yes, but I need to get final approval from our CFO. Can you give us until Friday?" },
+    { speaker: 'rep' as const, text: "I can hold the pricing we discussed until Friday. After that, I'd need to check if the annual discount is still available." },
+    { speaker: 'prospect' as const, text: "Yes, that's fair. We should have an answer by then." },
+    { speaker: 'rep' as const, text: "Great. So if the CFO approves, you're ready to move forward, correct?" },
+    { speaker: 'prospect' as const, text: "Yes, assuming everything looks good, we're ready to go." },
+  ],
+};

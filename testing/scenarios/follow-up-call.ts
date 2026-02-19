@@ -1,0 +1,21 @@
+export const followUpCallScenario = {
+  name: "Follow-up Call",
+  description: "Handling objections and moving toward commitment",
+  type: "follow-up" as const,
+  conversation: [
+    { speaker: 'rep' as const, text: "Hi Sarah, thanks for taking my call. How did the demo go with your team?" },
+    { speaker: 'prospect' as const, text: "They liked it, but we have some concerns." },
+    { speaker: 'rep' as const, text: "I appreciate you being direct. What's the main concern?" },
+    { speaker: 'prospect' as const, text: "Well, we're pretty happy with our current process. It's working okay, and change is always risky." },
+    { speaker: 'rep' as const, text: "I understand that feeling. Can I ask - what's one thing about your current process that could be better?" },
+    { speaker: 'prospect' as const, text: "I guess the inconsistency I mentioned before. Some reps still struggle." },
+    { speaker: 'rep' as const, text: "Right. And what happens if nothing changes? Will those struggling reps eventually hit quota?" },
+    { speaker: 'prospect' as const, text: "Honestly, probably not. We've tried training before and it didn't help much." },
+    { speaker: 'rep' as const, text: "So the cost of inaction is ongoing revenue loss. What if we could prove this works in 30 days?" },
+    { speaker: 'prospect' as const, text: "Maybe, but I'm still not sure about the price. Can you do any better on that?" },
+    { speaker: 'rep' as const, text: "If you commit to an annual contract, I can get you 15% off, plus onboarding at no extra cost. Does that work?" },
+    { speaker: 'prospect' as const, text: "That sounds reasonable. But I still need to think about it. Can you send me a proposal?" },
+    { speaker: 'rep' as const, text: "Absolutely. If the proposal looks good, what would be the next step? Would you be ready to move forward?" },
+    { speaker: 'prospect' as const, text: "Yes, if everything looks right, we'd probably move forward. I just need to review it with my team." },
+  ],
+};

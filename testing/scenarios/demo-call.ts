@@ -1,0 +1,23 @@
+export const demoCallScenario = {
+  name: "Demo Call",
+  description: "Product walkthrough with engagement and objections",
+  type: "demo" as const,
+  conversation: [
+    { speaker: 'rep' as const, text: "Thanks for joining, Sarah and Mike. I'm excited to show you how Hygenie Copilot works. Have you had a chance to look at anything I sent over?" },
+    { speaker: 'prospect' as const, text: "We skimmed the overview, but we'd love to see it in action." },
+    { speaker: 'rep' as const, text: "Perfect. Let me share my screen. So imagine you're on a call with a prospect. As the conversation happens, Hygenie listens and provides real-time coaching suggestions." },
+    { speaker: 'prospect' as const, text: "So it's like having a sales coach listening in?" },
+    { speaker: 'rep' as const, text: "Exactly, but it's AI-powered so it's always available. Watch - when the prospect asks about price too early, Hygenie suggests shifting to value first." },
+    { speaker: 'prospect' as const, text: "Yes, that's really interesting. How accurate is it? Does it actually help?" },
+    { speaker: 'rep' as const, text: "Great question. Our customers see about 25% improvement in close rates. What's your current close rate?" },
+    { speaker: 'prospect' as const, text: "We're around 15%, so that kind of improvement would be significant." },
+    { speaker: 'prospect' as const, text: "But what does this cost? We're also looking at Gong, and they seem to have more features." },
+    { speaker: 'rep' as const, text: "I understand you're evaluating options. Gong is great for post-call analysis. The key difference is we coach DURING the call when it matters most." },
+    { speaker: 'prospect' as const, text: "Hmm, they don't really. They analyze after. That's a good point." },
+    { speaker: 'rep' as const, text: "Right. For a team of 10, we're looking at around $8,000 per year." },
+    { speaker: 'prospect' as const, text: "Wow, that's more than I expected. That seems expensive." },
+    { speaker: 'rep' as const, text: "I understand. If this helps you close just one additional deal per rep per quarter, that's probably 10x the investment. What's your average deal size?" },
+    { speaker: 'prospect' as const, text: "About $50,000 per deal." },
+    { speaker: 'prospect' as const, text: "Yes, that does help. But I'd need to get budget approval. This would need to go through our procurement process." },
+  ],
+};

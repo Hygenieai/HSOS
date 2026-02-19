@@ -1,0 +1,21 @@
+export const discoveryCallScenario = {
+  name: "Discovery Call",
+  description: "First meeting - understand pain points and needs",
+  type: "discovery" as const,
+  conversation: [
+    { speaker: 'rep' as const, text: "Hi Sarah, thanks for taking the time. I know you're busy, so I'll keep this brief. Does 15 minutes work for you?" },
+    { speaker: 'prospect' as const, text: "Yes, that's fine. What's this about?" },
+    { speaker: 'rep' as const, text: "I wanted to learn more about your sales process. Can you walk me through how your team handles outbound calls today?" },
+    { speaker: 'prospect' as const, text: "Well, we have about 10 reps making calls. They use a CRM to track everything, but honestly, the results are inconsistent." },
+    { speaker: 'rep' as const, text: "What's the biggest challenge with that inconsistency? How is it affecting your team?" },
+    { speaker: 'prospect' as const, text: "Some reps are hitting quota, others aren't. The ones struggling don't know what they're doing wrong. We've tried training, but it doesn't stick." },
+    { speaker: 'rep' as const, text: "That makes sense. What if your reps could get real-time coaching during their calls? Like having a sales manager listening in and suggesting what to say next?" },
+    { speaker: 'prospect' as const, text: "That sounds interesting, but how would that work? And what's the price?" },
+    { speaker: 'rep' as const, text: "I'd love to show you exactly how it works. Before we talk numbers, can I ask - if we could get your struggling reps to quota, what would that mean for your revenue?" },
+    { speaker: 'prospect' as const, text: "That would be huge. We're probably leaving 30% of potential revenue on the table." },
+    { speaker: 'rep' as const, text: "So we're talking about a significant impact. What's your timeline for addressing this? Is this something you're looking to solve this quarter?" },
+    { speaker: 'prospect' as const, text: "Ideally yes, but I'd need to see a demo first and understand the investment." },
+    { speaker: 'rep' as const, text: "Perfect. I can show you a live demo this week. I have Tuesday at 2pm or Wednesday at 10am. Which works better?" },
+    { speaker: 'prospect' as const, text: "Tuesday at 2pm works. I'll have my sales manager join too." },
+  ],
+};
