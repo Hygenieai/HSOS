@@ -9,9 +9,7 @@ async function initSupabase(): Promise<SupabaseClient> {
   const buildKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (buildUrl && buildKey) {
-    supabaseInstance = createClient(buildUrl, buildKey, {
-      auth: { persistSession: true, autoRefreshToken: true },
-    });
+    supabaseInstance = createClient(buildUrl, buildKey);
     return supabaseInstance;
   }
 
@@ -26,9 +24,7 @@ async function initSupabase(): Promise<SupabaseClient> {
     );
   }
 
-  supabaseInstance = createClient(config.supabaseUrl, config.supabaseAnonKey, {
-    auth: { persistSession: true, autoRefreshToken: true },
-  });
+  supabaseInstance = createClient(config.supabaseUrl, config.supabaseAnonKey);
   return supabaseInstance;
 }
 
@@ -38,4 +34,7 @@ export async function getSupabase(): Promise<SupabaseClient> {
   return initPromise;
 }
 
-
+// Keep backward compat — but this only works if build-time vars are set
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder';
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
