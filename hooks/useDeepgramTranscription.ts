@@ -145,12 +145,8 @@ export function useDeepgramTranscription(options?: UseDeepgramOptions) {
 
 // Helper to get current Supabase auth token
 async function getSupabaseToken(): Promise<string> {
-  // Import dynamically to avoid SSR issues
-  const { createClient } = await import('@supabase/supabase-js');
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
+  const { getSupabase } = await import('@/lib/supabase/client');
+  const supabase = await getSupabase();
   const { data } = await supabase.auth.getSession();
   return data.session?.access_token || '';
 }
