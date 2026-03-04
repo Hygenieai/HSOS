@@ -4,6 +4,8 @@
 // Real-time speech-to-text via WebSocket
 // Model: nova-2 with speaker diarization
 
+import { useCallStore } from '@/store/callStore';
+
 export type DeepgramStatus = 'idle' | 'connecting' | 'connected' | 'reconnecting' | 'error' | 'closed';
 
 export interface DeepgramTranscript {
@@ -119,8 +121,9 @@ export class DeepgramService {
       this.stopKeepAlive();
       this.stopMediaRecorder();
 
-      // Auto-reconnect with exponential backoff
-      if (this.reconnectAttempts < this.maxReconnectAttempts && event.code !== 1000) {
+      // Auto-reconnect with exponential backoff — only if call is still active
+      const callStatus = useCallStore.getState().callStatus;
+      if (this.reconnectAttempts < this.maxReconnectAttempts && event.code !== 1000 && callStatus === 'active') {
         this.reconnectAttempts++;
         const delay = Math.min(1000 * Math.pow(2, this.reconnectAttempts), 30000);
         console.log(`[Deepgram] Reconnecting in ${delay}ms (attempt ${this.reconnectAttempts})`);

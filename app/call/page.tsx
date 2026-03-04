@@ -146,6 +146,13 @@ export default function CallPage() {
       call_type: 'discovery',
     });
 
+    // Verify Zustand store has updated before opening WebSocket
+    const confirmed = useCallStore.getState().callStatus;
+    if (confirmed !== 'active') {
+      console.error('[CallPage] callStatus not active after startCall:', confirmed);
+      return;
+    }
+
     await startListening();
   }, [userId, supabase, selectedContact, startCall, startListening, clearEvents]);
 

@@ -20,7 +20,13 @@ export async function POST(request: NextRequest) {
     );
 
     const token = authHeader.replace('Bearer ', '');
-    const { data: { user }, error } = await supabase.auth.getUser(token);
+    let { data: { user }, error } = await supabase.auth.getUser(token);
+
+    // Retry once after 500ms if auth state isn't resolved yet
+    if (error || !user) {
+      await new Promise((r) => setTimeout(r, 500));
+      ({ data: { user }, error } = await supabase.auth.getUser(token));
+    }
 
     if (error || !user) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
