@@ -17,6 +17,13 @@ async function initSupabase(): Promise<SupabaseClient> {
 
   // Fallback: fetch config from API route at runtime (works when v0 builds)
   const res = await fetch('/api/supabase-config');
+
+  if (!res.ok) {
+    throw new Error(
+      `Failed to load Supabase config from /api/supabase-config (HTTP ${res.status})`
+    );
+  }
+
   const config = await res.json();
 
   if (!config.supabaseUrl || !config.supabaseAnonKey) {
@@ -34,7 +41,14 @@ async function initSupabase(): Promise<SupabaseClient> {
 
 export async function getSupabase(): Promise<SupabaseClient> {
   if (supabaseInstance) return supabaseInstance;
-  if (!initPromise) initPromise = initSupabase();
+  if (!initPromise) {
+    initPromise = initSupabase().catch((err) => {
+      // Clear cached promise so the next call retries instead of
+      // returning the same rejection forever.
+      initPromise = null;
+      throw err;
+    });
+  }
   return initPromise;
 }
 
