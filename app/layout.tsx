@@ -15,9 +15,11 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "HSOS Symptom Engine | Hygenie.ai",
-  description:
-    "Pick what's broken in your sales process. Get an instant diagnosis of why it's happening and what to fix first.",
+  title: "Coaching | Hygenie.ai",
+  description: "Upload a call. Get coached.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export const viewport = {

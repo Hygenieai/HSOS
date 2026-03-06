@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState, Suspense } from "react";
+import { useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Mail, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { scenarios, getPattern } from "@/lib/scenarios";
 import { Navigation } from "@/components/Navigation";
 
@@ -16,101 +16,57 @@ function FindingCard({
 }) {
   return (
     <div
-      className="animate-card-in flex overflow-hidden rounded-xl border border-border bg-card"
-      style={{ animationDelay: `${index * 120}ms` }}
+      className="animate-card-in flex overflow-hidden rounded-xl"
+      style={{
+        animationDelay: `${index * 120}ms`,
+        backgroundColor: "#0F0F0F",
+        border: "1px solid rgba(255,255,255,0.08)",
+      }}
     >
       {/* Teal accent bar */}
-      <div className="w-1 shrink-0 bg-primary" />
+      <div className="w-1 shrink-0" style={{ backgroundColor: "#00989E" }} />
 
       <div className="flex flex-col gap-5 p-6">
         {/* Symptom label */}
-        <p className="text-lg font-bold leading-snug text-foreground">
+        <p
+          className="text-lg leading-snug"
+          style={{ color: "#FFFFFF", fontFamily: '"Poppins", sans-serif', fontWeight: 900 }}
+        >
           {`"${scenario.label}"`}
         </p>
 
         {/* Why */}
         <div>
-          <h4 className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
+          <h4
+            className="mb-1.5 text-xs uppercase tracking-wider"
+            style={{ color: "#00989E", fontFamily: '"Poppins", sans-serif', fontWeight: 900 }}
+          >
             Why this is happening
           </h4>
-          <p className="text-sm leading-relaxed text-muted-foreground">
+          <p
+            className="text-sm leading-relaxed"
+            style={{ color: "rgba(255,255,255,0.65)", fontFamily: '"Lato", sans-serif' }}
+          >
             {scenario.why}
           </p>
         </div>
 
         {/* Next move */}
         <div>
-          <h4 className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
+          <h4
+            className="mb-1.5 text-xs uppercase tracking-wider"
+            style={{ color: "#00989E", fontFamily: '"Poppins", sans-serif', fontWeight: 900 }}
+          >
             Your next move
           </h4>
-          <p className="text-sm leading-relaxed text-muted-foreground">
+          <p
+            className="text-sm leading-relaxed"
+            style={{ color: "rgba(255,255,255,0.65)", fontFamily: '"Lato", sans-serif' }}
+          >
             {scenario.nextMove}
           </p>
         </div>
       </div>
-    </div>
-  );
-}
-
-function EmailCapture({ selectedIds }: { selectedIds: number[] }) {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState("");
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email.includes("@") || !email.includes(".")) {
-      setError("Enter a valid email address.");
-      return;
-    }
-    
-    // Save to localStorage
-    localStorage.setItem(
-      "hsos_video_request",
-      JSON.stringify({ email, selectedIds, timestamp: Date.now() })
-    );
-    setSubmitted(true);
-    setError("");
-  }
-
-  if (submitted) {
-    return (
-      <div className="mt-10 flex items-center justify-center gap-2 rounded-xl border border-border bg-card px-6 py-5 text-center">
-        <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
-        <p className="text-sm text-muted-foreground">
-          {"You're in. I'll record a custom video for your results and send it over."}
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="mt-10 rounded-xl border border-border bg-card px-6 py-5">
-      <p className="text-sm font-medium text-foreground">
-        {"Want a custom video breaking down your results?"}
-      </p>
-      <p className="mt-1 text-xs text-muted-foreground">
-        {"I'll review your selections and send a short video outlining what I would address first."}
-      </p>
-      <form onSubmit={handleSubmit} className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-start">
-        <div className="flex flex-1 flex-col">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => { setEmail(e.target.value); setError(""); }}
-            placeholder="you@company.com"
-            className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-          />
-          {error && <span className="mt-1 text-xs text-destructive">{error}</span>}
-        </div>
-        <button
-          type="submit"
-          className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#00c4d6]"
-        >
-          <Mail className="h-3.5 w-3.5" />
-          Send My Video
-        </button>
-      </form>
     </div>
   );
 }
@@ -132,16 +88,29 @@ function ResultsContent() {
 
   if (selectedScenarios.length === 0) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center px-6 py-20 text-center">
-        <h1 className="text-2xl font-bold text-foreground">
+      <main
+        className="flex min-h-screen flex-col items-center justify-center px-6 py-20 text-center"
+        style={{ backgroundColor: "#0A0A0A" }}
+      >
+        <style>{`@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Lato:wght@400;500;600&display=swap');`}</style>
+        <h1
+          className="text-2xl"
+          style={{ color: "#FFFFFF", fontFamily: '"Poppins", sans-serif', fontWeight: 900 }}
+        >
           No symptoms selected
         </h1>
-        <p className="mt-3 text-muted-foreground">
+        <p
+          className="mt-3"
+          style={{ color: "rgba(255,255,255,0.65)", fontFamily: '"Lato", sans-serif' }}
+        >
           Go back and pick what sounds like your reality.
         </p>
         <Link
           href="/"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-sm font-bold text-primary-foreground transition-colors hover:bg-[#00c4d6]"
+          className="mt-6 inline-flex items-center gap-2 rounded-full px-8 py-3 text-sm font-bold transition-colors"
+          style={{ backgroundColor: "#00989E", color: "#FFFFFF", fontFamily: '"Lato", sans-serif' }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#00B8BF")}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#00989E")}
         >
           Start Over
         </Link>
@@ -150,20 +119,147 @@ function ResultsContent() {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen" style={{ backgroundColor: "#0A0A0A" }}>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Lato:wght@400;500;600&display=swap');`}</style>
       <Navigation />
       <div className="px-4 py-10 sm:px-6 sm:py-16">
         <div className="mx-auto max-w-3xl">
 
         {/* Header */}
         <div className="animate-fade-up mb-10">
-          <h1 className="text-balance text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
+          <h1
+            className="text-balance text-3xl tracking-tight md:text-4xl"
+            style={{ color: "#FFFFFF", fontFamily: '"Poppins", sans-serif', fontWeight: 900 }}
+          >
             {"Here's what we found."}
           </h1>
-          <p className="mt-3 text-lg leading-relaxed text-muted-foreground">
-            {"Based on what you told us, here's what's structurally broken \u2014 and what to do about it."}
+          <p
+            className="mt-3 text-lg leading-relaxed"
+            style={{ color: "rgba(255,255,255,0.65)", fontFamily: '"Lato", sans-serif' }}
+          >
+            {"Based on what you told us, here\u2019s what\u2019s structurally broken \u2014 and what to do about it."}
           </p>
         </div>
+
+        {/* Tool Cards — moved above findings */}
+        <section className="animate-card-in mb-10">
+          <div className="grid gap-5 sm:grid-cols-3">
+            {/* Call Analysis */}
+            <div
+              className="flex flex-col rounded-xl p-6"
+              style={{ backgroundColor: "#0F0F0F", border: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <h3
+                  className="text-lg"
+                  style={{ color: "#FFFFFF", fontFamily: '"Poppins", sans-serif', fontWeight: 900 }}
+                >
+                  Call Analysis
+                </h3>
+                <span
+                  className="rounded-full px-3 py-0.5 text-xs font-semibold"
+                  style={{ backgroundColor: "rgba(0,152,158,0.15)", color: "#00989E" }}
+                >
+                  FREE
+                </span>
+              </div>
+              <p
+                className="mb-6 flex-1 text-sm leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.65)", fontFamily: '"Lato", sans-serif' }}
+              >
+                Upload any recorded call. Qube analyzes every moment against a proven sales framework.
+              </p>
+              <Link
+                href="/upload"
+                className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-bold transition-colors"
+                style={{ backgroundColor: "#00989E", color: "#FFFFFF", fontFamily: '"Lato", sans-serif' }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#00B8BF")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#00989E")}
+              >
+                Analyze a Call
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            {/* Loom Demo Review */}
+            <div
+              className="flex flex-col rounded-xl p-6"
+              style={{ backgroundColor: "#0F0F0F", border: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <h3
+                  className="text-lg"
+                  style={{ color: "#FFFFFF", fontFamily: '"Poppins", sans-serif', fontWeight: 900 }}
+                >
+                  Loom Demo Review
+                </h3>
+                <span
+                  className="rounded-full px-3 py-0.5 text-xs font-semibold"
+                  style={{ backgroundColor: "rgba(0,152,158,0.15)", color: "#00989E" }}
+                >
+                  $30
+                </span>
+              </div>
+              <p
+                className="mb-6 flex-1 text-sm leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.65)", fontFamily: '"Lato", sans-serif' }}
+              >
+                Get a personal 5-minute Loom from Jake breaking down exactly what to fix in your demo or sales conversation.
+              </p>
+              <a
+                href="https://calendly.com/jakeweber-hygenieai/15-minute-demo-review"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-bold transition-colors"
+                style={{ backgroundColor: "#00989E", color: "#FFFFFF", fontFamily: '"Lato", sans-serif' }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#00B8BF")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#00989E")}
+              >
+                Get My Loom Review
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+
+            {/* 1:1 Coaching Call */}
+            <div
+              className="flex flex-col rounded-xl p-6"
+              style={{ backgroundColor: "#0F0F0F", border: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <h3
+                  className="text-lg"
+                  style={{ color: "#FFFFFF", fontFamily: '"Poppins", sans-serif', fontWeight: 900 }}
+                >
+                  1:1 Coaching Call
+                </h3>
+                <span
+                  className="rounded-full px-3 py-0.5 text-xs font-semibold"
+                  style={{ backgroundColor: "rgba(0,152,158,0.15)", color: "#00989E" }}
+                >
+                  $75
+                </span>
+              </div>
+              <p
+                className="mb-6 flex-1 text-sm leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.65)", fontFamily: '"Lato", sans-serif' }}
+              >
+                30 minutes with Jake live. Go through your calls together and walk away with a clear action plan.
+              </p>
+              <a
+                href="https://calendly.com/jakeweber-hygenieai/30-minute-1-1-coaching-call"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-bold transition-colors"
+                style={{ backgroundColor: "#00989E", color: "#FFFFFF", fontFamily: '"Lato", sans-serif' }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#00B8BF")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#00989E")}
+              >
+                Book a Call
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </section>
 
         {/* Findings */}
         <section className="flex flex-col gap-5">
@@ -178,103 +274,34 @@ function ResultsContent() {
             className="animate-card-in mt-10"
             style={{ animationDelay: `${selectedScenarios.length * 120 + 100}ms` }}
           >
-            <div className="rounded-xl border border-border bg-card p-6">
-              <h3 className="mb-3 text-lg font-bold text-foreground">
+            <div
+              className="rounded-xl p-6"
+              style={{ backgroundColor: "#0F0F0F", border: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              <h3
+                className="mb-3 text-lg"
+                style={{ color: "#FFFFFF", fontFamily: '"Poppins", sans-serif', fontWeight: 900 }}
+              >
                 The pattern behind your symptoms
               </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p
+                className="text-sm leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.65)", fontFamily: '"Lato", sans-serif' }}
+              >
                 {pattern}
               </p>
             </div>
           </section>
         )}
 
-        {/* Tool Cards */}
-        <section
-          className="animate-card-in mt-10"
-          style={{
-            animationDelay: `${selectedScenarios.length * 120 + (pattern ? 220 : 100)}ms`,
-          }}
-        >
-          <div className="grid gap-5 sm:grid-cols-3">
-            {/* Live Coaching */}
-            <div className="flex flex-col rounded-xl border border-border bg-[#0A0A0A] p-6">
-              <div className="mb-3 flex items-center justify-between">
-                <h3 className="font-[family-name:var(--font-poppins)] text-lg font-bold text-foreground">
-                  Live Coaching
-                </h3>
-                <span className="rounded-full bg-primary/15 px-3 py-0.5 text-xs font-semibold text-[#00989E]">
-                  FREE
-                </span>
-              </div>
-              <p className="mb-6 flex-1 font-[family-name:var(--font-lato)] text-sm leading-relaxed text-muted-foreground">
-                Get real-time coaching during your next call.
-              </p>
-              <Link
-                href="/call"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#00989E] px-5 py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-[#00c4d6]"
-              >
-                Launch Tool
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-
-            {/* Call Analysis */}
-            <div className="flex flex-col rounded-xl border border-border bg-[#0A0A0A] p-6">
-              <div className="mb-3 flex items-center justify-between">
-                <h3 className="font-[family-name:var(--font-poppins)] text-lg font-bold text-foreground">
-                  Call Analysis
-                </h3>
-                <span className="rounded-full bg-primary/15 px-3 py-0.5 text-xs font-semibold text-[#00989E]">
-                  FREE
-                </span>
-              </div>
-              <p className="mb-6 flex-1 font-[family-name:var(--font-lato)] text-sm leading-relaxed text-muted-foreground">
-                Upload any recorded call. Qube analyzes every moment.
-              </p>
-              <Link
-                href="/upload"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#00989E] px-5 py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-[#00c4d6]"
-              >
-                Analyze a Call
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-
-            {/* Personal Demo Review */}
-            <div className="flex flex-col rounded-xl border border-border bg-[#0A0A0A] p-6">
-              <div className="mb-3 flex items-center justify-between">
-                <h3 className="font-[family-name:var(--font-poppins)] text-lg font-bold text-foreground">
-                  Personal Review
-                </h3>
-                <span className="rounded-full bg-primary/15 px-3 py-0.5 text-xs font-semibold text-[#00989E]">
-                  FROM $30
-                </span>
-              </div>
-              <p className="mb-6 flex-1 font-[family-name:var(--font-lato)] text-sm leading-relaxed text-muted-foreground">
-                Upload your demo. Jake reviews it personally and sends back a Loom.
-              </p>
-              <a
-                href="https://calendly.com/jakeweber-hygenieai/15-minute-demo-review"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#00989E] px-5 py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-[#00c4d6]"
-              >
-                Book a Review
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Secondary email capture */}
-        <EmailCapture selectedIds={selectedIds} />
-
         {/* Start over link */}
         <div className="mt-8 text-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex items-center gap-1.5 text-sm transition-colors"
+            style={{ color: "rgba(255,255,255,0.65)", fontFamily: '"Lato", sans-serif' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Start over
@@ -282,8 +309,11 @@ function ResultsContent() {
         </div>
 
         {/* Footer */}
-        <footer className="mt-12 border-t border-border pt-6 text-center text-sm text-muted-foreground">
-          &copy; 2025 Hygenie.SOS
+        <footer
+          className="mt-12 pt-6 text-center text-sm"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.65)", fontFamily: '"Lato", sans-serif' }}
+        >
+          &copy; 2025 Hygenie.ai
         </footer>
         </div>
       </div>
@@ -295,8 +325,8 @@ export default function ResultsPage() {
   return (
     <Suspense
       fallback={
-        <main className="flex min-h-screen items-center justify-center">
-          <p className="text-muted-foreground">Loading...</p>
+        <main className="flex min-h-screen items-center justify-center" style={{ backgroundColor: "#0A0A0A" }}>
+          <p style={{ color: "rgba(255,255,255,0.65)", fontFamily: '"Lato", sans-serif' }}>Loading...</p>
         </main>
       }
     >
