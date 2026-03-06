@@ -222,6 +222,13 @@ function ResultsContent() {
                   Try Live Coaching Tool
                   <ArrowRight className="h-4 w-4" />
                 </Link>
+                <Link
+                  href="/upload"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-bold text-foreground transition-colors hover:border-primary hover:bg-card"
+                >
+                  Analyze a Call
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
               <p className="text-xs text-muted-foreground">
                 A complimentary overview of your sales process to give you clarity on how to move forward. No pitch. Just structure.
