@@ -13,7 +13,7 @@ export default function UploadPage() {
 
   const [prospectName, setProspectName] = useState("");
   const [company, setCompany] = useState("");
-  const [callStage, setCallStage] = useState<string>("Discovery");
+  const [callStage, setCallStage] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const [loading, setLoading] = useState(false);
