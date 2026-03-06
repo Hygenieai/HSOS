@@ -189,50 +189,78 @@ function ResultsContent() {
           </section>
         )}
 
-        {/* CTA */}
+        {/* Tool Cards */}
         <section
           className="animate-card-in mt-10"
           style={{
             animationDelay: `${selectedScenarios.length * 120 + (pattern ? 220 : 100)}ms`,
           }}
         >
-          <div className="flex overflow-hidden rounded-xl border border-border bg-card">
-            <div className="w-1 shrink-0 bg-primary" />
-            <div className="flex flex-col gap-4 p-6">
-              <h3 className="text-lg font-bold text-foreground">
-                Review this diagnostic with me.
-              </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {"I help founders install structured sales systems that operate independently. Not theory. Not templates. A process engineered around your product, your market, and your sales cycle."}
-              </p>
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a
-                  href="https://calendly.com/jakeweber-hygenieai/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground transition-colors hover:bg-[#00c4d6]"
-                >
-                  Book a Complimentary Overview
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-                <Link
-                  href="/call"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-bold text-foreground transition-colors hover:border-primary hover:bg-card"
-                >
-                  Try Live Coaching Tool
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/upload"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-bold text-foreground transition-colors hover:border-primary hover:bg-card"
-                >
-                  Analyze a Call
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+          <div className="grid gap-5 sm:grid-cols-3">
+            {/* Live Coaching */}
+            <div className="flex flex-col rounded-xl border border-border bg-[#0A0A0A] p-6">
+              <div className="mb-3 flex items-center justify-between">
+                <h3 className="font-[family-name:var(--font-poppins)] text-lg font-bold text-foreground">
+                  Live Coaching
+                </h3>
+                <span className="rounded-full bg-primary/15 px-3 py-0.5 text-xs font-semibold text-[#00989E]">
+                  FREE
+                </span>
               </div>
-              <p className="text-xs text-muted-foreground">
-                A complimentary overview of your sales process to give you clarity on how to move forward. No pitch. Just structure.
+              <p className="mb-6 flex-1 font-[family-name:var(--font-lato)] text-sm leading-relaxed text-muted-foreground">
+                Get real-time coaching during your next call.
               </p>
+              <Link
+                href="/call"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#00989E] px-5 py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-[#00c4d6]"
+              >
+                Launch Tool
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            {/* Call Analysis */}
+            <div className="flex flex-col rounded-xl border border-border bg-[#0A0A0A] p-6">
+              <div className="mb-3 flex items-center justify-between">
+                <h3 className="font-[family-name:var(--font-poppins)] text-lg font-bold text-foreground">
+                  Call Analysis
+                </h3>
+                <span className="rounded-full bg-primary/15 px-3 py-0.5 text-xs font-semibold text-[#00989E]">
+                  FREE
+                </span>
+              </div>
+              <p className="mb-6 flex-1 font-[family-name:var(--font-lato)] text-sm leading-relaxed text-muted-foreground">
+                Upload any recorded call. Qube analyzes every moment.
+              </p>
+              <Link
+                href="/upload"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#00989E] px-5 py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-[#00c4d6]"
+              >
+                Analyze a Call
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            {/* Personal Demo Review */}
+            <div className="flex flex-col rounded-xl border border-border bg-[#0A0A0A] p-6">
+              <div className="mb-3 flex items-center justify-between">
+                <h3 className="font-[family-name:var(--font-poppins)] text-lg font-bold text-foreground">
+                  Personal Review
+                </h3>
+                <span className="rounded-full bg-primary/15 px-3 py-0.5 text-xs font-semibold text-[#00989E]">
+                  FROM $30
+                </span>
+              </div>
+              <p className="mb-6 flex-1 font-[family-name:var(--font-lato)] text-sm leading-relaxed text-muted-foreground">
+                Upload your demo. Jake reviews it personally and sends back a Loom.
+              </p>
+              <a
+                href="mailto:jake@hygenieai.com?subject=Demo Review Request"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#00989E] px-5 py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-[#00c4d6]"
+              >
+                Book a Review
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
           </div>
         </section>

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Mic2, Home } from "lucide-react";
 
 export function Navigation() {
   const pathname = usePathname();
@@ -23,17 +22,6 @@ export function Navigation() {
           <div className="flex items-center gap-4">
             <Link
               href="/"
-              className={`inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary ${
-                pathname === "/" || pathname === "/results"
-                  ? "text-foreground"
-                  : "text-muted-foreground"
-              }`}
-            >
-              <Home className="h-4 w-4" />
-              Home
-            </Link>
-            <Link
-              href="/"
               className={`text-sm font-medium transition-colors hover:text-primary ${
                 pathname === "/" || pathname === "/results"
                   ? "text-foreground"
@@ -44,15 +32,30 @@ export function Navigation() {
             </Link>
             <Link
               href="/call"
-              className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
+              className={`text-sm font-medium transition-colors hover:text-primary ${
                 pathname === "/call"
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border bg-card text-foreground hover:border-primary hover:bg-primary/5"
+                  ? "text-foreground"
+                  : "text-muted-foreground"
               }`}
             >
-              <Mic2 className="h-4 w-4" />
               Live Coaching
             </Link>
+            <Link
+              href="/upload"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                pathname === "/upload"
+                  ? "text-foreground"
+                  : "text-muted-foreground"
+              }`}
+            >
+              Call Analysis
+            </Link>
+            <a
+              href="mailto:jake@hygenieai.com?subject=Demo Review Request"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+            >
+              Demo Review
+            </a>
           </div>
         </div>
       </div>
