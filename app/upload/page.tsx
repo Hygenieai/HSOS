@@ -93,336 +93,362 @@ export default function UploadPage() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#000000",
-        color: "#ffffff",
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "80px 24px",
-      }}
-    >
-      <p
-        style={{
-          color: "#00d7a3",
-          fontSize: "12px",
-          fontWeight: 600,
-          letterSpacing: "0.15em",
-          textTransform: "uppercase",
-          marginBottom: "16px",
-        }}
-      >
-        Qube Analysis Engine
-      </p>
-
-      <h1
-        style={{
-          fontSize: "clamp(32px, 5vw, 56px)",
-          fontWeight: 700,
-          marginBottom: "16px",
-          textAlign: "center",
-          lineHeight: 1.1,
-        }}
-      >
-        Upload a call. Get coached.
-      </h1>
-
-      <p
-        style={{
-          fontSize: "17px",
-          color: "#a0a0a0",
-          maxWidth: "520px",
-          textAlign: "center",
-          lineHeight: 1.6,
-          marginBottom: "48px",
-        }}
-      >
-        Drop in any recorded call and Qube will analyze every moment against a
-        proven sales framework.
-      </p>
-
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Lato:wght@400;500;600&display=swap');
+        @keyframes spin { to { transform: rotate(360deg); } }
+      `}</style>
       <div
         style={{
-          width: "100%",
-          maxWidth: "560px",
-          backgroundColor: "#0a0a0a",
-          border: "1px solid #1a1a1a",
-          borderRadius: "16px",
-          padding: "40px",
+          minHeight: "100vh",
+          backgroundColor: "#0A0A0A",
+          color: "#FFFFFF",
+          fontFamily: '"Lato", sans-serif',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: "80px 24px",
         }}
       >
-        {loading ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "24px",
-              padding: "60px 0",
-            }}
-          >
+        <p
+          style={{
+            color: "#00989E",
+            fontSize: "12px",
+            fontWeight: 600,
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            marginBottom: "16px",
+            fontFamily: '"Lato", sans-serif',
+          }}
+        >
+          Qube Analysis Engine
+        </p>
+
+        <h1
+          style={{
+            fontSize: "clamp(32px, 5vw, 56px)",
+            fontWeight: 900,
+            fontFamily: '"Poppins", sans-serif',
+            letterSpacing: "0.04em",
+            marginBottom: "16px",
+            textAlign: "center",
+            lineHeight: 1.1,
+          }}
+        >
+          Upload a call. Get coached.
+        </h1>
+
+        <p
+          style={{
+            fontSize: "17px",
+            color: "rgba(255,255,255,0.65)",
+            maxWidth: "520px",
+            textAlign: "center",
+            lineHeight: 1.6,
+            marginBottom: "48px",
+            fontFamily: '"Lato", sans-serif',
+          }}
+        >
+          Drop in any recorded call and Qube will analyze every moment against a
+          proven sales framework.
+        </p>
+
+        <div
+          style={{
+            width: "100%",
+            maxWidth: "560px",
+            backgroundColor: "#0F0F0F",
+            border: "1px solid #1a1a1a",
+            borderRadius: "16px",
+            padding: "40px",
+          }}
+        >
+          {loading ? (
             <div
               style={{
-                width: "32px",
-                height: "32px",
-                border: "3px solid #1a1a1a",
-                borderTopColor: "#00d7a3",
-                borderRadius: "50%",
-                animation: "spin 0.8s linear infinite",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "24px",
+                padding: "60px 0",
               }}
-            />
-            <p style={{ color: "#a0a0a0", fontSize: "15px" }}>
-              Qube is analyzing your call...
-            </p>
-            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: "24px" }}>
-              <label
-                style={{
-                  display: "block",
-                  color: "#00d7a3",
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  marginBottom: "8px",
-                }}
-              >
-                Prospect Name
-              </label>
-              <input
-                type="text"
-                value={prospectName}
-                onChange={(e) => setProspectName(e.target.value)}
-                placeholder="Jane Smith"
-                style={{
-                  width: "100%",
-                  padding: "12px 16px",
-                  backgroundColor: "#111111",
-                  border: "1px solid #222222",
-                  borderRadius: "8px",
-                  color: "#ffffff",
-                  fontSize: "15px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                }}
-              />
-            </div>
-
-            <div style={{ marginBottom: "24px" }}>
-              <label
-                style={{
-                  display: "block",
-                  color: "#00d7a3",
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  marginBottom: "8px",
-                }}
-              >
-                Company
-              </label>
-              <input
-                type="text"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                placeholder="Acme Corp"
-                style={{
-                  width: "100%",
-                  padding: "12px 16px",
-                  backgroundColor: "#111111",
-                  border: "1px solid #222222",
-                  borderRadius: "8px",
-                  color: "#ffffff",
-                  fontSize: "15px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                }}
-              />
-            </div>
-
-            <div style={{ marginBottom: "24px" }}>
-              <label
-                style={{
-                  display: "block",
-                  color: "#00d7a3",
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  marginBottom: "8px",
-                }}
-              >
-                Call Stage
-              </label>
-              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                {CALL_STAGES.map((stage) => (
-                  <button
-                    key={stage}
-                    type="button"
-                    onClick={() => setCallStage(stage)}
-                    style={{
-                      padding: "8px 18px",
-                      borderRadius: "999px",
-                      border:
-                        callStage === stage
-                          ? "1px solid #00d7a3"
-                          : "1px solid #222222",
-                      backgroundColor:
-                        callStage === stage
-                          ? "rgba(0, 215, 163, 0.1)"
-                          : "#111111",
-                      color: callStage === stage ? "#00d7a3" : "#888888",
-                      fontSize: "13px",
-                      fontWeight: 500,
-                      cursor: "pointer",
-                      transition: "all 0.15s ease",
-                    }}
-                  >
-                    {stage}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: "32px" }}>
-              <label
-                style={{
-                  display: "block",
-                  color: "#00d7a3",
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  marginBottom: "8px",
-                }}
-              >
-                Call Recording
-              </label>
-              <div
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  setDragOver(true);
-                }}
-                onDragLeave={() => setDragOver(false)}
-                onDrop={handleDrop}
-                onClick={() => fileInputRef.current?.click()}
-                style={{
-                  border: dragOver
-                    ? "2px dashed #00d7a3"
-                    : file
-                      ? "2px solid #1a1a1a"
-                      : "2px dashed #222222",
-                  borderRadius: "12px",
-                  padding: "40px 24px",
-                  textAlign: "center",
-                  cursor: "pointer",
-                  backgroundColor: dragOver
-                    ? "rgba(0, 215, 163, 0.05)"
-                    : "#0d0d0d",
-                  transition: "all 0.15s ease",
-                }}
-              >
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept={ACCEPTED_TYPES}
-                  onChange={(e) => {
-                    const f = e.target.files?.[0];
-                    if (f) handleFile(f);
-                  }}
-                  style={{ display: "none" }}
-                />
-                {file ? (
-                  <div>
-                    <p style={{ color: "#ffffff", fontSize: "15px", margin: 0 }}>
-                      {file.name}
-                    </p>
-                    <p
-                      style={{
-                        color: "#666666",
-                        fontSize: "13px",
-                        margin: "4px 0 0",
-                      }}
-                    >
-                      {(file.size / (1024 * 1024)).toFixed(1)} MB
-                    </p>
-                  </div>
-                ) : (
-                  <div>
-                    <p
-                      style={{
-                        color: "#666666",
-                        fontSize: "15px",
-                        margin: 0,
-                      }}
-                    >
-                      Drag & drop your recording here, or{" "}
-                      <span style={{ color: "#00d7a3" }}>browse</span>
-                    </p>
-                    <p
-                      style={{
-                        color: "#444444",
-                        fontSize: "12px",
-                        margin: "8px 0 0",
-                      }}
-                    >
-                      MP4, MP3, M4A, WAV, WebM — up to 500MB
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {error && (
-              <div
-                style={{
-                  backgroundColor: "rgba(255, 60, 60, 0.08)",
-                  border: "1px solid rgba(255, 60, 60, 0.2)",
-                  borderRadius: "8px",
-                  padding: "12px 16px",
-                  marginBottom: "24px",
-                  color: "#ff4444",
-                  fontSize: "14px",
-                }}
-              >
-                {error}
-              </div>
-            )}
-
-            <button
-              type="submit"
-              style={{
-                width: "100%",
-                padding: "14px",
-                backgroundColor: "#00d7a3",
-                color: "#000000",
-                fontSize: "15px",
-                fontWeight: 600,
-                border: "none",
-                borderRadius: "10px",
-                cursor: "pointer",
-                transition: "opacity 0.15s ease",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.opacity = "0.9")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.opacity = "1")
-              }
             >
-              Run Qube Analysis
-            </button>
-          </form>
-        )}
+              <div
+                style={{
+                  width: "32px",
+                  height: "32px",
+                  border: "3px solid #1a1a1a",
+                  borderTopColor: "#00989E",
+                  borderRadius: "50%",
+                  animation: "spin 0.8s linear infinite",
+                }}
+              />
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.65)",
+                  fontSize: "15px",
+                  fontFamily: '"Lato", sans-serif',
+                }}
+              >
+                Qube is analyzing your call...
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <div style={{ marginBottom: "24px" }}>
+                <label
+                  style={{
+                    display: "block",
+                    color: "#00989E",
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    marginBottom: "8px",
+                    fontFamily: '"Lato", sans-serif',
+                  }}
+                >
+                  Prospect Name
+                </label>
+                <input
+                  type="text"
+                  value={prospectName}
+                  onChange={(e) => setProspectName(e.target.value)}
+                  placeholder="Jane Smith"
+                  style={{
+                    width: "100%",
+                    padding: "12px 16px",
+                    backgroundColor: "#262626",
+                    border: "1px solid #333333",
+                    borderRadius: "8px",
+                    color: "#FFFFFF",
+                    fontSize: "15px",
+                    fontFamily: '"Lato", sans-serif',
+                    outline: "none",
+                    boxSizing: "border-box",
+                  }}
+                />
+              </div>
+
+              <div style={{ marginBottom: "24px" }}>
+                <label
+                  style={{
+                    display: "block",
+                    color: "#00989E",
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    marginBottom: "8px",
+                    fontFamily: '"Lato", sans-serif',
+                  }}
+                >
+                  Company
+                </label>
+                <input
+                  type="text"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  placeholder="Acme Corp"
+                  style={{
+                    width: "100%",
+                    padding: "12px 16px",
+                    backgroundColor: "#262626",
+                    border: "1px solid #333333",
+                    borderRadius: "8px",
+                    color: "#FFFFFF",
+                    fontSize: "15px",
+                    fontFamily: '"Lato", sans-serif',
+                    outline: "none",
+                    boxSizing: "border-box",
+                  }}
+                />
+              </div>
+
+              <div style={{ marginBottom: "24px" }}>
+                <label
+                  style={{
+                    display: "block",
+                    color: "#00989E",
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    marginBottom: "8px",
+                    fontFamily: '"Lato", sans-serif',
+                  }}
+                >
+                  Call Stage
+                </label>
+                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                  {CALL_STAGES.map((stage) => (
+                    <button
+                      key={stage}
+                      type="button"
+                      onClick={() => setCallStage(stage)}
+                      style={{
+                        padding: "8px 18px",
+                        borderRadius: "999px",
+                        border:
+                          callStage === stage
+                            ? "1px solid #00989E"
+                            : "1px solid #333333",
+                        backgroundColor:
+                          callStage === stage
+                            ? "rgba(0, 152, 158, 0.1)"
+                            : "#262626",
+                        color: callStage === stage ? "#00989E" : "rgba(255,255,255,0.65)",
+                        fontSize: "13px",
+                        fontWeight: 500,
+                        fontFamily: '"Lato", sans-serif',
+                        cursor: "pointer",
+                        transition: "all 0.15s ease",
+                      }}
+                    >
+                      {stage}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div style={{ marginBottom: "32px" }}>
+                <label
+                  style={{
+                    display: "block",
+                    color: "#00989E",
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    marginBottom: "8px",
+                    fontFamily: '"Lato", sans-serif',
+                  }}
+                >
+                  Call Recording
+                </label>
+                <div
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    setDragOver(true);
+                  }}
+                  onDragLeave={() => setDragOver(false)}
+                  onDrop={handleDrop}
+                  onClick={() => fileInputRef.current?.click()}
+                  style={{
+                    border: dragOver
+                      ? "2px dashed #00989E"
+                      : file
+                        ? "2px solid #1a1a1a"
+                        : "2px dashed #333333",
+                    borderRadius: "12px",
+                    padding: "40px 24px",
+                    textAlign: "center",
+                    cursor: "pointer",
+                    backgroundColor: dragOver
+                      ? "rgba(0, 152, 158, 0.05)"
+                      : "#141414",
+                    transition: "all 0.15s ease",
+                  }}
+                >
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept={ACCEPTED_TYPES}
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (f) handleFile(f);
+                    }}
+                    style={{ display: "none" }}
+                  />
+                  {file ? (
+                    <div>
+                      <p style={{ color: "#FFFFFF", fontSize: "15px", margin: 0, fontFamily: '"Lato", sans-serif' }}>
+                        {file.name}
+                      </p>
+                      <p
+                        style={{
+                          color: "rgba(255,255,255,0.65)",
+                          fontSize: "13px",
+                          margin: "4px 0 0",
+                          fontFamily: '"Lato", sans-serif',
+                        }}
+                      >
+                        {(file.size / (1024 * 1024)).toFixed(1)} MB
+                      </p>
+                    </div>
+                  ) : (
+                    <div>
+                      <p
+                        style={{
+                          color: "rgba(255,255,255,0.65)",
+                          fontSize: "15px",
+                          margin: 0,
+                          fontFamily: '"Lato", sans-serif',
+                        }}
+                      >
+                        Drag & drop your recording here, or{" "}
+                        <span style={{ color: "#00989E" }}>browse</span>
+                      </p>
+                      <p
+                        style={{
+                          color: "rgba(255,255,255,0.4)",
+                          fontSize: "12px",
+                          margin: "8px 0 0",
+                          fontFamily: '"Lato", sans-serif',
+                        }}
+                      >
+                        MP4, MP3, M4A, WAV, WebM — up to 500MB
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {error && (
+                <div
+                  style={{
+                    backgroundColor: "rgba(255, 60, 60, 0.08)",
+                    border: "1px solid rgba(255, 60, 60, 0.2)",
+                    borderRadius: "8px",
+                    padding: "12px 16px",
+                    marginBottom: "24px",
+                    color: "#ff4444",
+                    fontSize: "14px",
+                    fontFamily: '"Lato", sans-serif',
+                  }}
+                >
+                  {error}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                style={{
+                  width: "100%",
+                  padding: "14px",
+                  backgroundColor: "#00989E",
+                  color: "#0A0A0A",
+                  fontSize: "15px",
+                  fontWeight: 600,
+                  fontFamily: '"Lato", sans-serif',
+                  border: "none",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  transition: "opacity 0.15s ease",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.opacity = "0.9")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.opacity = "1")
+                }
+              >
+                Run Qube Analysis
+              </button>
+            </form>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
