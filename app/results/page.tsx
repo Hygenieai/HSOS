@@ -255,7 +255,9 @@ function ResultsContent() {
                 Upload your demo. Jake reviews it personally and sends back a Loom.
               </p>
               <a
-                href="mailto:jake@hygenieai.com?subject=Demo Review Request"
+                href="https://calendly.com/jakeweber-hygenieai/15-minute-demo-review"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#00989E] px-5 py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-[#00c4d6]"
               >
                 Book a Review
