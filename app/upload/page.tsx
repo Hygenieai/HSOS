@@ -121,7 +121,7 @@ export default function UploadPage() {
             fontFamily: '"Lato", sans-serif',
           }}
         >
-          Qube Analysis Engine
+          Hygenie.ai Decision Engine
         </p>
 
         <h1
@@ -133,6 +133,7 @@ export default function UploadPage() {
             marginBottom: "16px",
             textAlign: "center",
             lineHeight: 1.1,
+            color: "#FFFFFF",
           }}
         >
           Upload a call. Get coached.
@@ -149,7 +150,7 @@ export default function UploadPage() {
             fontFamily: '"Lato", sans-serif',
           }}
         >
-          Drop in any recorded call and Qube will analyze every moment against a
+          Drop in any recorded call and Hygenie.ai Decision Engine will analyze every moment against a
           proven sales framework.
         </p>
 
@@ -158,7 +159,7 @@ export default function UploadPage() {
             width: "100%",
             maxWidth: "560px",
             backgroundColor: "#0F0F0F",
-            border: "1px solid #1a1a1a",
+            border: "1px solid rgba(255,255,255,0.08)",
             borderRadius: "16px",
             padding: "40px",
           }}
@@ -177,7 +178,7 @@ export default function UploadPage() {
                 style={{
                   width: "32px",
                   height: "32px",
-                  border: "3px solid #1a1a1a",
+                  border: "3px solid rgba(255,255,255,0.08)",
                   borderTopColor: "#00989E",
                   borderRadius: "50%",
                   animation: "spin 0.8s linear infinite",
@@ -190,7 +191,7 @@ export default function UploadPage() {
                   fontFamily: '"Lato", sans-serif',
                 }}
               >
-                Qube is analyzing your call...
+                Hygenie.ai Decision Engine is analyzing your call...
               </p>
             </div>
           ) : (
@@ -219,7 +220,7 @@ export default function UploadPage() {
                     width: "100%",
                     padding: "12px 16px",
                     backgroundColor: "#262626",
-                    border: "1px solid #333333",
+                    border: "1px solid rgba(255,255,255,0.08)",
                     borderRadius: "8px",
                     color: "#FFFFFF",
                     fontSize: "15px",
@@ -254,7 +255,7 @@ export default function UploadPage() {
                     width: "100%",
                     padding: "12px 16px",
                     backgroundColor: "#262626",
-                    border: "1px solid #333333",
+                    border: "1px solid rgba(255,255,255,0.08)",
                     borderRadius: "8px",
                     color: "#FFFFFF",
                     fontSize: "15px",
@@ -292,7 +293,7 @@ export default function UploadPage() {
                         border:
                           callStage === stage
                             ? "1px solid #00989E"
-                            : "1px solid #333333",
+                            : "1px solid rgba(255,255,255,0.08)",
                         backgroundColor:
                           callStage === stage
                             ? "rgba(0, 152, 158, 0.1)"
@@ -338,15 +339,15 @@ export default function UploadPage() {
                     border: dragOver
                       ? "2px dashed #00989E"
                       : file
-                        ? "2px solid #1a1a1a"
-                        : "2px dashed #333333",
+                        ? "2px solid rgba(255,255,255,0.08)"
+                        : "2px dashed rgba(255,255,255,0.08)",
                     borderRadius: "12px",
                     padding: "40px 24px",
                     textAlign: "center",
                     cursor: "pointer",
                     backgroundColor: dragOver
                       ? "rgba(0, 152, 158, 0.05)"
-                      : "#141414",
+                      : "#0F0F0F",
                     transition: "all 0.15s ease",
                   }}
                 >
@@ -391,7 +392,7 @@ export default function UploadPage() {
                       </p>
                       <p
                         style={{
-                          color: "rgba(255,255,255,0.4)",
+                          color: "rgba(255,255,255,0.65)",
                           fontSize: "12px",
                           margin: "8px 0 0",
                           fontFamily: '"Lato", sans-serif',
@@ -427,23 +428,23 @@ export default function UploadPage() {
                   width: "100%",
                   padding: "14px",
                   backgroundColor: "#00989E",
-                  color: "#0A0A0A",
+                  color: "#FFFFFF",
                   fontSize: "15px",
                   fontWeight: 600,
                   fontFamily: '"Lato", sans-serif',
                   border: "none",
                   borderRadius: "10px",
                   cursor: "pointer",
-                  transition: "opacity 0.15s ease",
+                  transition: "background-color 0.15s ease",
                 }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.opacity = "0.9")
+                  (e.currentTarget.style.backgroundColor = "#00B8BF")
                 }
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.opacity = "1")
+                  (e.currentTarget.style.backgroundColor = "#00989E")
                 }
               >
-                Run Qube Analysis
+                Run Hygenie.ai Decision Engine Analysis
               </button>
             </form>
           )}

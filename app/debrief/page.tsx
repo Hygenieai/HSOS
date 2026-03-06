@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Navigation } from "@/components/Navigation";
 
 interface QubeAnalysis {
   frameControl: { score: number; moment: string; verdict: string };
@@ -105,7 +106,7 @@ export default function DebriefPage() {
 
   const cardStyle: React.CSSProperties = {
     backgroundColor: "#0F0F0F",
-    border: "1px solid #1a1a1a",
+    border: "1px solid rgba(255,255,255,0.08)",
     borderRadius: "16px",
     padding: "28px",
   };
@@ -131,15 +132,20 @@ export default function DebriefPage() {
           backgroundColor: "#0A0A0A",
           color: "#FFFFFF",
           fontFamily: '"Lato", sans-serif',
-          padding: "80px 24px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
         }}
       >
+        <Navigation />
+        <div
+          style={{
+            padding: "80px 24px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
         <div style={{ width: "100%", maxWidth: "880px" }}>
           {/* Header */}
-          <p style={{ ...labelStyle, textAlign: "center" }}>Qube Debrief</p>
+          <p style={{ ...labelStyle, textAlign: "center" }}>Hygenie.ai Decision Engine Debrief</p>
 
           <h1
             style={{
@@ -150,6 +156,7 @@ export default function DebriefPage() {
               textAlign: "center",
               lineHeight: 1.2,
               marginBottom: "48px",
+              color: "#FFFFFF",
             }}
           >
             {data.prospectName || "Call"} — {data.callStage || "Analysis"}
@@ -182,9 +189,10 @@ export default function DebriefPage() {
               </p>
               <p
                 style={{
-                  color: "rgba(255,255,255,0.4)",
+                  color: "rgba(255,255,255,0.65)",
                   fontSize: "14px",
                   margin: "4px 0 0",
+                  fontFamily: '"Lato", sans-serif',
                 }}
               >
                 out of 100
@@ -252,7 +260,7 @@ export default function DebriefPage() {
                     <span
                       style={{
                         fontSize: "14px",
-                        color: "rgba(255,255,255,0.4)",
+                        color: "rgba(255,255,255,0.65)",
                         fontWeight: 400,
                       }}
                     >
@@ -267,6 +275,7 @@ export default function DebriefPage() {
                     color: "rgba(255,255,255,0.65)",
                     lineHeight: 1.5,
                     margin: "0 0 12px",
+                    fontFamily: '"Lato", sans-serif',
                   }}
                 >
                   {rule.verdict}
@@ -276,10 +285,11 @@ export default function DebriefPage() {
                   <p
                     style={{
                       fontSize: "12px",
-                      color: "rgba(255,255,255,0.4)",
+                      color: "rgba(255,255,255,0.65)",
                       lineHeight: 1.4,
                       margin: 0,
                       fontStyle: "italic",
+                      fontFamily: '"Lato", sans-serif',
                     }}
                   >
                     {rule.moment}
@@ -298,6 +308,7 @@ export default function DebriefPage() {
                 color: "#00989E",
                 lineHeight: 1.6,
                 margin: 0,
+                fontFamily: '"Lato", sans-serif',
               }}
             >
               {data.leftOnTable}
@@ -313,6 +324,7 @@ export default function DebriefPage() {
                 color: "#FFFFFF",
                 lineHeight: 1.6,
                 margin: 0,
+                fontFamily: '"Lato", sans-serif',
               }}
             >
               {data.topPriority}
@@ -335,7 +347,7 @@ export default function DebriefPage() {
               style={{
                 padding: "14px 32px",
                 backgroundColor: "#00989E",
-                color: "#0A0A0A",
+                color: "#FFFFFF",
                 fontSize: "15px",
                 fontWeight: 600,
                 fontFamily: '"Lato", sans-serif',
@@ -343,8 +355,10 @@ export default function DebriefPage() {
                 borderRadius: "10px",
                 textDecoration: "none",
                 cursor: "pointer",
-                transition: "opacity 0.15s ease",
+                transition: "background-color 0.15s ease",
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#00B8BF")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#00989E")}
             >
               Book a Call Review with Jake
             </a>
@@ -357,7 +371,7 @@ export default function DebriefPage() {
                 fontWeight: 600,
                 fontFamily: '"Lato", sans-serif',
                 borderRadius: "10px",
-                border: "1px solid #333333",
+                border: "1px solid rgba(255,255,255,0.08)",
                 backgroundColor: "transparent",
                 color: "#FFFFFF",
                 textDecoration: "none",
@@ -368,6 +382,7 @@ export default function DebriefPage() {
               Analyze Another Call
             </a>
           </div>
+        </div>
         </div>
       </div>
     </>
