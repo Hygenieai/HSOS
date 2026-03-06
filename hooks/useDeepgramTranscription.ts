@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { DeepgramService, DeepgramStatus, DeepgramTranscript } from '@/lib/deepgram/DeepgramService';
 import { useTranscriptStore } from '@/store/transcriptStore';
+import { useCallStore } from '@/store/callStore';
 
 interface UseDeepgramOptions {
   onFinalTranscript?: (text: string, speaker: 'rep' | 'prospect') => void;
@@ -123,10 +124,11 @@ export function useDeepgramTranscription(options?: UseDeepgramOptions) {
     setActiveSpeaker(null);
   }, [setActiveSpeaker]);
 
-  // Cleanup on unmount
+  // Cleanup on unmount — only stop if call is actually active
   useEffect(() => {
     return () => {
-      if (serviceRef.current) {
+      const callStatus = useCallStore.getState().callStatus;
+      if (serviceRef.current && callStatus === 'active') {
         serviceRef.current.stop();
         serviceRef.current = null;
       }
