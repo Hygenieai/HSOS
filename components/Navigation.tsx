@@ -50,12 +50,16 @@ export function Navigation() {
             >
               Call Analysis
             </Link>
-            <a
-              href="mailto:jake@hygenieai.com?subject=Demo Review Request"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+            <Link
+              href="/demo-review"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                pathname === "/demo-review"
+                  ? "text-foreground"
+                  : "text-muted-foreground"
+              }`}
             >
               Demo Review
-            </a>
+            </Link>
           </div>
         </div>
       </div>
