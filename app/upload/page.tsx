@@ -49,23 +49,61 @@ export default function UploadPage() {
     setError(null);
 
     try {
-      // Step 1: Transcribe
-      const formData = new FormData();
-      formData.append("file", file);
+      // Step 1: Get Deepgram token
+      const tokenRes = await fetch("/api/transcribe");
+      if (!tokenRes.ok) {
+        const err = await tokenRes.json();
+        throw new Error(err.error || "Failed to get transcription token");
+      }
+      const { key } = await tokenRes.json();
 
-      const transcribeRes = await fetch("/api/transcribe", {
-        method: "POST",
-        body: formData,
-      });
+      // Step 2: Send file directly to Deepgram from the browser
+      const dgRes = await fetch(
+        "https://api.deepgram.com/v1/listen?model=nova-2&diarize=true&punctuate=true",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Token ${key}`,
+            "Content-Type": file.type || "audio/wav",
+          },
+          body: file,
+        }
+      );
 
-      if (!transcribeRes.ok) {
-        const err = await transcribeRes.json();
-        throw new Error(err.error || "Transcription failed");
+      if (!dgRes.ok) {
+        const errText = await dgRes.text();
+        throw new Error(`Deepgram error: ${errText}`);
       }
 
-      const { transcript } = await transcribeRes.json();
+      const dgResult = await dgRes.json();
+      const words: { word: string; speaker: number; punctuated_word: string }[] =
+        dgResult.results?.channels?.[0]?.alternatives?.[0]?.words ?? [];
 
-      // Step 2: Analyze
+      // Build transcript with speaker labels
+      const lines: string[] = [];
+      let currentSpeaker: number | null = null;
+      let currentLine = "";
+
+      for (const w of words) {
+        if (w.speaker !== currentSpeaker) {
+          if (currentLine) {
+            const label = currentSpeaker === 0 ? "Rep" : "Prospect";
+            lines.push(`${label}: ${currentLine.trim()}`);
+          }
+          currentSpeaker = w.speaker;
+          currentLine = w.punctuated_word;
+        } else {
+          currentLine += " " + w.punctuated_word;
+        }
+      }
+      if (currentLine) {
+        const label = currentSpeaker === 0 ? "Rep" : "Prospect";
+        lines.push(`${label}: ${currentLine.trim()}`);
+      }
+
+      const transcript = lines.join("\n");
+
+      // Step 3: Analyze
       const analyzeRes = await fetch("/api/analyze-call", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
