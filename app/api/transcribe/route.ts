@@ -1,5 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '500mb',
+    },
+  },
+};
+
 export async function POST(req: NextRequest) {
   const apiKey = process.env.DEEPGRAM_API_KEY;
   if (!apiKey) {
